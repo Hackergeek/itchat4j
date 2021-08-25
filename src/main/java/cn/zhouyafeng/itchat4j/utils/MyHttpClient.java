@@ -155,7 +155,6 @@ public class MyHttpClient {
         return entity;
     }
 
-    private HttpHost proxy = new HttpHost("172.18.13.171", 3128, HttpHost.DEFAULT_SCHEME_NAME);// 代理
     private Header agentHeader;
 
     {
@@ -163,8 +162,7 @@ public class MyHttpClient {
 
         agentHeader = new BasicHeader("User-Agent", Config.USER_AGENT);
         // 将CookieStore设置到httpClient中
-        httpClient = HttpClients.custom().setProxy(proxy).setDefaultCookieStore(cookieStore).build();
-        httpClient = HttpClients.custom().setProxy(proxy).setDefaultCookieStore(cookieStore)
+        httpClient = HttpClients.custom().setDefaultCookieStore(cookieStore)
                 .setDefaultHeaders(Arrays.asList(agentHeader)).build();
     }
 
@@ -176,7 +174,7 @@ public class MyHttpClient {
             } catch (final IOException e) {
                 e.printStackTrace();
             }
-            httpClient = HttpClients.custom().setProxy(proxy).setDefaultCookieStore(cookieStore)
+            httpClient = HttpClients.custom().setDefaultCookieStore(cookieStore)
                     .setDefaultHeaders(Arrays.asList(agentHeader)).build();
         }
     }
