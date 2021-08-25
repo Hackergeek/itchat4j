@@ -78,7 +78,11 @@ public class LoginServiceImpl implements ILoginService {
 			long millis = System.currentTimeMillis();
 			params.add(new BasicNameValuePair(LoginParaEnum.R.para(), String.valueOf(millis / 1579L)));
 			params.add(new BasicNameValuePair(LoginParaEnum._.para(), String.valueOf(millis)));
-			HttpEntity entity = httpClient.doGet(URLEnum.LOGIN_URL.getUrl(), params, true, null);
+			HashMap<String, String> headerMap = new HashMap<>();
+//			headerMap.put("client-version", Config.UOS_PATCH_CLIENT_VERSION);
+//			headerMap.put("extspam", Config.UOS_PATCH_EXTSPAM);
+//			headerMap.put("referer", "https://wx.qq.com/?&lang=zh_CN&target=t");
+			HttpEntity entity = httpClient.doGet(URLEnum.LOGIN_URL.getUrl(), params, true, headerMap);
 
 			try {
 				String result = EntityUtils.toString(entity);
@@ -107,6 +111,7 @@ public class LoginServiceImpl implements ILoginService {
 		List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
 		params.add(new BasicNameValuePair(UUIDParaEnum.APP_ID.para(), UUIDParaEnum.APP_ID.value()));
 		params.add(new BasicNameValuePair(UUIDParaEnum.FUN.para(), UUIDParaEnum.FUN.value()));
+		params.add(new BasicNameValuePair(UUIDParaEnum.REDIRECT_URI.para(), UUIDParaEnum.REDIRECT_URI.value()));
 		params.add(new BasicNameValuePair(UUIDParaEnum.LANG.para(), UUIDParaEnum.LANG.value()));
 		params.add(new BasicNameValuePair(UUIDParaEnum._.para(), String.valueOf(System.currentTimeMillis())));
 
@@ -484,9 +489,12 @@ public class LoginServiceImpl implements ILoginService {
 			core.getLoginInfo().put("deviceid", "e" + String.valueOf(new Random().nextLong()).substring(1, 16)); // 生成15位随机数
 			core.getLoginInfo().put("BaseRequest", new ArrayList<String>());
 			String text = "";
-
+			HashMap<String, String> headerMap = new HashMap<>();
+			headerMap.put("client-version", Config.UOS_PATCH_CLIENT_VERSION);
+			headerMap.put("extspam", Config.UOS_PATCH_EXTSPAM);
+			headerMap.put("referer", "https://wx.qq.com/?&lang=zh_CN&target=t");
 			try {
-				HttpEntity entity = myHttpClient.doGet(originalUrl, null, false, null);
+				HttpEntity entity = myHttpClient.doGet(originalUrl, null, false, headerMap);
 				text = EntityUtils.toString(entity);
 			} catch (Exception e) {
 				LOG.info(e.getMessage());

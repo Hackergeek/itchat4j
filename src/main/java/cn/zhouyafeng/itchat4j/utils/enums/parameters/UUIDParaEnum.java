@@ -9,6 +9,7 @@ public enum UUIDParaEnum {
 
     APP_ID("appid", "wx782c26e4c19acffb"),
     FUN("fun", "new"),
+    REDIRECT_URI("redirect_uri", "https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxnewloginpage?mod=desktop"),
     LANG("lang", "zh_CN"),
     _("_", "时间戳");
 
