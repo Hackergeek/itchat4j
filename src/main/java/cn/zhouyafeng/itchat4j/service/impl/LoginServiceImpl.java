@@ -13,6 +13,7 @@ import java.util.Map.Entry;
 import java.util.Random;
 import java.util.regex.Matcher;
 
+import cn.zhouyafeng.itchat4j.api.WechatTools;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
 import org.apache.http.message.BasicNameValuePair;
@@ -60,6 +61,24 @@ public class LoginServiceImpl implements ILoginService {
 
 	public LoginServiceImpl() {
 
+	}
+
+	@Override
+	public String pushLogin() {
+		myHttpClient.setCookie(WechatTools.readCookieStore());
+		final String url = String.format(URLEnum.WEB_WX_PUSH_LOGIN_URL.getUrl(), MyHttpClient.getCookie("wxuin"));
+		final HttpEntity entity = myHttpClient.doGet(url, null, true, null);
+		try {
+			final String result = EntityUtils.toString(entity);
+			final JSONObject data = JSONObject.parseObject(result);
+			if (data.containsKey("uuid")) {
+				return data.getString("uuid");
+			}
+		} catch (final Exception e) {
+			LOG.error("微信pushLogin异常！", e);
+		}
+
+		return null;
 	}
 
 	@Override

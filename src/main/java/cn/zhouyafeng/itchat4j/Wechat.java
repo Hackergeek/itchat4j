@@ -20,6 +20,15 @@ public class Wechat {
 		login.login(qrPath);
 	}
 
+	public Wechat(IMsgHandlerFace msgHandler, String qrPath, boolean hotReload) {
+		System.setProperty("jsse.enableSNIExtension", "false"); // 防止SSL错误
+		this.msgHandler = msgHandler;
+
+		// 登陆
+		LoginController login = new LoginController();
+		login.login(qrPath, hotReload);
+	}
+
 	public void start() {
 		LOG.info("+++++++++++++++++++开始消息处理+++++++++++++++++++++");
 		new Thread(new Runnable() {

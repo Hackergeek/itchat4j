@@ -35,6 +35,43 @@ public class BaseMsg implements Serializable {
 	private String text;
 	/** 消息类型 **/
 	private int msgType;
+
+	@Override
+	public String toString() {
+		return "BaseMsg{" +
+				"subMsgType=" + subMsgType +
+				", voiceLength=" + voiceLength +
+				", fileName='" + fileName + '\'' +
+				", imgHeight=" + imgHeight +
+				", toUserName='" + toUserName + '\'' +
+				", hasProductId=" + hasProductId +
+				", imgStatus=" + imgStatus +
+				", url='" + url + '\'' +
+				", imgWidth=" + imgWidth +
+				", forwardFlag=" + forwardFlag +
+				", status=" + status +
+				", Ticket='" + Ticket + '\'' +
+				", recommendInfo=" + recommendInfo +
+				", createTime=" + createTime +
+				", newMsgId='" + newMsgId + '\'' +
+				", text='" + text + '\'' +
+				", msgType=" + msgType +
+				", groupMsg=" + groupMsg +
+				", msgId='" + msgId + '\'' +
+				", statusNotifyCode=" + statusNotifyCode +
+				", appInfo=" + appInfo +
+				", appMsgType=" + appMsgType +
+				", Type='" + Type + '\'' +
+				", playLength=" + playLength +
+				", mediaId='" + mediaId + '\'' +
+				", content='" + content + '\'' +
+				", statusNotifyUserName='" + statusNotifyUserName + '\'' +
+				", fromUserName='" + fromUserName + '\'' +
+				", oriContent='" + oriContent + '\'' +
+				", fileSize='" + fileSize + '\'' +
+				'}';
+	}
+
 	/** 是否为群消息 **/
 	private boolean groupMsg;
 	private String msgId;

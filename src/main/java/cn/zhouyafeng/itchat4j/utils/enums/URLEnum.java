@@ -5,9 +5,6 @@ package cn.zhouyafeng.itchat4j.utils.enums;
  * Created by xiaoxiaomo on 2017/5/6.
  */
 public enum URLEnum {
-
-
-
     BASE_URL("https://login.weixin.qq.com","基本的URL"),
     UUID_URL(BASE_URL.url+"/jslogin","UUIDLURL"),
     QRCODE_URL(BASE_URL.url+"/qrcode/","初始化URL"),
@@ -27,12 +24,8 @@ public enum URLEnum {
     WEB_WX_BATCH_GET_CONTACT("%s/webwxbatchgetcontact?type=ex&r=%s&lang=zh_CN&pass_ticket=%s", "查询群信息"),
 	WEB_WX_REMARKNAME("%s/webwxoplog?lang=zh_CN&pass_ticket=%s", "修改好友备注"),
     WEB_WX_VERIFYUSER("%s/webwxverifyuser?r=%s&lang=zh_CN&pass_ticket=%s", "被动添加好友"),
-    WEB_WX_GET_MEDIA("%s/webwxgetmedia", "下载文件")
-
-    
-    
-
-    ;
+    WEB_WX_GET_MEDIA("%s/webwxgetmedia", "下载文件"),
+    WEB_WX_PUSH_LOGIN_URL("https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxpushloginurl?uin=%s", "绑定登录URL");
 
     private String url;
     private String msg;
@@ -41,7 +34,6 @@ public enum URLEnum {
         this.url = url;
         this.msg = msg;
     }
-
 
     public String getUrl() {
         return url;
